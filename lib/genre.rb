@@ -16,9 +16,8 @@ class Genre
   end
 
   def self.create(name)
-    song = self.new(name)
-    song.save
-    song
+    self.new(name).save
+    self
   end
 
   def self.destroy_all
