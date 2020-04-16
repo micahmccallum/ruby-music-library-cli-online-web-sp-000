@@ -1,5 +1,10 @@
+require_relative 'concerns/findable'
 class Artist
   attr_accessor :name
+  
+  extend Concerns::Findable
+  
+  
 
   @@all = []
 
@@ -16,9 +21,10 @@ class Artist
     @@all << self
   end
 
-  def self.create(name)
-    self.new(name).save
-    self
+ def self.create(name)
+    new_artist = new(name)
+    new_artist.save
+    new_artist
   end
 
   def self.destroy_all

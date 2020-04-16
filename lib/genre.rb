@@ -1,5 +1,8 @@
+require_relative 'concerns/findable'
 class Genre
   attr_accessor :name
+
+  extend Concerns::Findable
 
   @@all = []
 
@@ -16,9 +19,19 @@ class Genre
     @@all << self
   end
 
-  def self.create(name)
-    self.new(name).save
-    self
+  # def add_genre(song)
+  #   binding.pry
+  #   if !song.genre
+  #     song.genre = self
+  #   end
+  #   @genres << genre unless @genres.include?(genre)
+  # end
+
+
+ def self.create(name)
+    new_genre = new(name)
+    new_genre.save
+    new_genre
   end
 
   def self.destroy_all
