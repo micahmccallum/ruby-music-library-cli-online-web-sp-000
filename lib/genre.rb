@@ -19,15 +19,6 @@ class Genre
     @@all << self
   end
 
-  # def add_genre(song)
-  #   binding.pry
-  #   if !song.genre
-  #     song.genre = self
-  #   end
-  #   @genres << genre unless @genres.include?(genre)
-  # end
-
-
  def self.create(name)
     new_genre = new(name)
     new_genre.save

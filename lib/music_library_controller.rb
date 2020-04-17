@@ -18,6 +18,22 @@ class MusicLibraryController
       puts "To quit, type 'exit'."
       puts "What would you like to do?"
       response = gets.strip.downcase
+      case response
+      when "list songs"
+        list_songs
+      when "list artists"
+        list_artists
+      when "list genres"
+        list_genres
+      when "list artist"
+        list_songs_by_artist
+      when "list genre"
+        list_songs_by_genre
+      when "play song"
+        play_song
+      else
+        nil
+      end
     end
   end
 
@@ -26,7 +42,6 @@ class MusicLibraryController
     sorted_songs.uniq!.each_with_index do |song, index|
       puts "#{index + 1}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
     end
-
   end
 
   def list_artists
@@ -61,7 +76,6 @@ class MusicLibraryController
     genre_song_list.uniq.each_with_index do |song, index|
       puts "#{index + 1}. #{song.artist.name} - #{song.name}"
     end
-
   end
 
   def play_song
@@ -71,9 +85,6 @@ class MusicLibraryController
     if response.between?(1, sorted_songs.count)
       index = response - 1
       puts "Playing #{sorted_songs[index].name} by #{sorted_songs[index].artist.name}"
-    else
-
     end
-
   end
 end
