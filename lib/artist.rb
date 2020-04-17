@@ -1,10 +1,10 @@
 require_relative 'concerns/findable'
 class Artist
   attr_accessor :name
-  
+
   extend Concerns::Findable
-  
-  
+
+
 
   @@all = []
 
@@ -33,7 +33,6 @@ class Artist
 
   def add_song(song)
     if !song.artist
-
       song.artist = self
     end
     @songs << song unless @songs.include?(song)
