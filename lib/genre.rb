@@ -30,7 +30,7 @@ class Genre
 
   def artists
     binding.pry
-    @songs.collect {|song| song.artist }.uniq
+    @songs.map {|song| song.artist }.uniq
   end
 
 end
