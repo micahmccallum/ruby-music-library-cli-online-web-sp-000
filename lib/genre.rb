@@ -1,6 +1,7 @@
 require_relative 'concerns/findable'
 class Genre
   attr_accessor :name
+  attr_reader :songs
 
   extend Concerns::Findable
 
@@ -19,25 +20,16 @@ class Genre
     @@all << self
   end
 
- def self.create(name)
-    new_genre = new(name)
-    new_genre.save
-    new_genre
+  def self.create(name)
+    new(name).tap {|genre| genre.save}
   end
 
   def self.destroy_all
     @@all.clear
   end
 
-  def songs
-    @songs
+  def artists
+    @songs.collect {|song| song.artist }.uniq
   end
 
-  def artists
-    collection = []
-    @songs.each do |song|
-      collection << song.artist unless collection.include?(song.artist)
-    end
-    collection
-  end
 end
